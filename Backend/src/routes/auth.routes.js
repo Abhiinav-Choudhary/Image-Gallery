@@ -2,7 +2,7 @@ import express from "express"
 import { adminLogin } from "../controllers/adminAuth.controller.js"
 import User from "../models/User.js"
 import { generateToken } from "../utils/jwt.js"
-
+import { googleLogin } from "../controllers/userAuth.controller.js"
 
 const router = express.Router()
 
@@ -11,6 +11,8 @@ router.post("/logout", (req, res) => {
   res.clearCookie("token")
   res.json({ message: "Logged out successfully" })
 })
+
+router.post("/user/google", googleLogin)
 
 router.post("/dev-user-login", async (req, res) => {
   try {
